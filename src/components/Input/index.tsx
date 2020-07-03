@@ -5,8 +5,6 @@ import { StyledIconProps } from '@styled-icons/styled-icon'
 
 import { useField } from '@unform/core'
 
-import Tooltip from '../Tooltip'
-
 import * as S from './styled'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
