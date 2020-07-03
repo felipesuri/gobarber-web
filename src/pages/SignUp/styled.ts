@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { ArrowLeft } from 'styled-icons/feather'
 import { shade } from 'polished'
+import { Form } from '@unform/web'
 
 import signUpBackgroundImage from '../../assets/sign-up-background.png'
 
@@ -44,7 +45,7 @@ export const Background = styled.div`
   background-size: cover;
 `
 
-export const Form = styled.form`
+export const FormWrapper = styled(Form)`
   margin: 80px 0;
   width: 340px;
   text-align: center;
