@@ -53,45 +53,6 @@ export const Form = styled.form`
     margin-bottom: 24px;
   }
 
-  input {
-    color: #faede8;
-    background: #232129;
-    border-radius: 10px;
-    border: 2px solid #232129;
-    padding: 16px;
-    width: 100%;
-
-    &::placeholder {
-      color: #666360;
-    }
-
-    & + input {
-      margin-top: 8px;
-    }
-  }
-
-  button {
-    background: #ff9000;
-    color: #312e38;
-
-    border-radius: 10px;
-    border: 0;
-
-    height: 56px;
-    padding: 0 16px;
-    width: 100%;
-    margin-top: 16px;
-
-    font-weight: 600;
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${shade(0.2, '#ff9000')}
-    }
-
-  }
-
   a {
     color: #faede8;
     display: block;

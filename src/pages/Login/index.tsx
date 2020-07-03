@@ -1,6 +1,10 @@
 import React from 'react'
+import { Mail, Lock } from 'styled-icons/feather'
 
 import logoImg from '../../assets/logo.svg'
+
+import Input from '../../components/Input'
+import Button from '../../components/Button'
 
 import * as S from './styled'
 
@@ -12,10 +16,10 @@ const Login: React.FC = () => (
       <S.Form>
         <h1>Faça seu Login</h1>
 
-        <input placeholder="E-mail" />
-        <input type="password" placeholder="Senha" />
+        <Input name="email" icon={Mail} placeholder="E-mail" />
+        <Input name="password" icon={Lock} type="password" placeholder="Senha" />
 
-        <button type="submit">Entrar</button>
+        <Button type="submit">Entrar</Button>
 
         <a href="forgot">Esqueci minha senha</a>
       </S.Form>
