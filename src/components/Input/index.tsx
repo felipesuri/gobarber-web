@@ -5,6 +5,8 @@ import { StyledIconProps } from '@styled-icons/styled-icon'
 
 import { useField } from '@unform/core'
 
+import Tooltip from '../Tooltip'
+
 import * as S from './styled'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -38,8 +40,8 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   }, [fieldName, registerField])
 
   return (
-    <S.InputWrapper isFocused={isFocus} isField={isField} >
-      {Icon && <Icon size={16} />}
+    <S.InputWrapper isErrored={!!error} isFocused={isFocus} isField={isField} >
+      {Icon && <Icon size={20} />}
       <S.Content
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
@@ -48,7 +50,11 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
         {...rest}
       />
 
-      {error}
+      {error && (
+        <S.ErrorWrapper title={error}>
+          <S.ErrorIcon />
+        </S.ErrorWrapper>
+      )}
     </S.InputWrapper>
   )
 }

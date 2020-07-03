@@ -1,8 +1,12 @@
 import styled, { css } from 'styled-components'
+import { AlertCircle } from 'styled-icons/feather'
+
+import Tooltip from '../Tooltip'
 
 interface ContainerProps {
   isFocused: boolean
   isField: boolean
+  isErrored: boolean
 }
 
 export const InputWrapper = styled.div<ContainerProps>`
@@ -13,6 +17,10 @@ export const InputWrapper = styled.div<ContainerProps>`
 
   border: 2px solid #232129;
   color: #666368;
+
+  ${props => props.isErrored && css`
+    border-color: #c53030;
+  `}
 
   ${props => props.isFocused && css`
     color: #ff9000;
@@ -44,4 +52,29 @@ export const Content = styled.input`
   &::placeholder {
     color: #666360;
   }
+`
+
+export const ErrorWrapper = styled(Tooltip)`
+height: 20px;
+  margin-left: 16px;
+
+  svg {
+    margin: 0;
+  }
+
+  span {
+    background: #c53030;
+    color: #fff;
+
+    &::before {
+      border-color: #c53030 transparent;
+    }
+  }
+`
+
+export const ErrorIcon = styled(AlertCircle)`
+  width: 20px;
+  height: 20px;
+
+  color: #c53030;
 `
