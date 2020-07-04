@@ -6,6 +6,8 @@ import * as Yup from 'yup'
 
 import getValidationErrors from '../../utils/getValidationErrors'
 
+import { useAuth } from '../../hooks/AuthContext'
+
 import logoImg from '../../assets/logo.svg'
 
 import Input from '../../components/Input'
@@ -13,10 +15,17 @@ import Button from '../../components/Button'
 
 import * as S from './styled'
 
+interface SignInFormData {
+  email: string
+  password: string
+}
+
 const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
 
-  const handleSubmit = useCallback(async (data: object) => {
+  const { signIn } = useAuth()
+
+  const handleSubmit = useCallback(async (data: SignInFormData) => {
     try {
       formRef.current?.setErrors({})
 
@@ -26,11 +35,16 @@ const Login: React.FC = () => {
       })
 
       await schema.validate(data, { abortEarly: false })
+
+      signIn({
+        email: data.email,
+        password: data.password
+      })
     } catch (err) {
       const errors = getValidationErrors(err)
       formRef.current?.setErrors(errors)
     }
-  }, [])
+  }, [signIn])
 
   return (
     <S.LoginWrapper>
