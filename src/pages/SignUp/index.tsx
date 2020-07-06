@@ -2,8 +2,12 @@ import React, { useCallback, useRef } from 'react'
 // eslint-disable-next-line no-unused-vars
 import { FormHandles } from '@unform/core'
 import { Mail, Lock, User } from 'styled-icons/feather'
-
+import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
+
+import api from '../../services/api'
+
+import { useToast } from '../../hooks/toast'
 
 import getValidationErrors from '../../utils/getValidationErrors'
 
@@ -14,8 +18,16 @@ import Button from '../../components/Button'
 
 import * as S from './styled'
 
+interface SingUPFormData {
+  name: string
+  email: string
+  password: string
+}
+
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
+  const { addToast } = useToast()
+  const history = useHistory()
 
   const handleSubmit = useCallback(async (data: object) => {
     try {
@@ -28,11 +40,32 @@ const SignUp: React.FC = () => {
       })
 
       await schema.validate(data, { abortEarly: false })
+
+      await api.post('/users', data)
+
+      addToast({
+        type: 'sucess',
+        title: 'Cadastro realizado!',
+        description: 'Você já pode fazer seu login!'
+      })
+
+      history.push('/')
     } catch (err) {
-      const errors = getValidationErrors(err)
-      formRef.current?.setErrors(errors)
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err)
+
+        formRef.current?.setErrors(errors)
+
+        return
+      }
+
+      addToast({
+        type: 'error',
+        title: 'Erro no cadastro',
+        description: 'Ocorreu um erro ao fazer cadastro, tente novamente'
+      })
     }
-  }, [])
+  }, [addToast, history])
 
   return (
     <S.LoginWrapper>
