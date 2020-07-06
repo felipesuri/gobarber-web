@@ -1,7 +1,8 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { ArrowLeft } from 'styled-icons/feather'
 import { shade } from 'polished'
 import { Form } from '@unform/web'
+import { Link } from 'react-router-dom'
 
 import signUpBackgroundImage from '../../assets/sign-up-background.png'
 
@@ -10,6 +11,17 @@ export const LoginWrapper = styled.div`
 
   display: flex;
   align-items: stretch;
+`
+
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px)
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px)
+  }
 `
 
 export const Content = styled.div`
@@ -21,6 +33,8 @@ export const Content = styled.div`
 
   width: 100%;
   max-width: 700px;
+
+  animation: ${appearFromRight} 1s;
 
   a {
     color: #f4ede8;
@@ -53,17 +67,17 @@ export const FormWrapper = styled(Form)`
   h1 {
     margin-bottom: 24px;
   }
+`
 
-  a {
-    color: #faede8;
-    display: block;
-    margin-top: 24px;
-    text-decoration: none;
-    transition: color 0.2s;
+export const InternalLink = styled(Link)`
+  color: #faede8;
+  display: block;
+  margin-top: 24px;
+  text-decoration: none;
+  transition: color 0.2s;
 
-    &:hover {
-      color: ${shade(0.2, '#faede8')}
-    }
+  &:hover {
+    color: ${shade(0.2, '#faede8')}
   }
 `
 

@@ -47,6 +47,8 @@ const Login: React.FC = () => {
         const errors = getValidationErrors(err)
 
         formRef.current?.setErrors(errors)
+
+        return
       }
 
       addToast({
@@ -73,10 +75,10 @@ const Login: React.FC = () => {
           <a href="forgot">Esqueci minha senha</a>
         </S.FormWrapper>
 
-        <a href="login">
+        <S.InternalLink to="/singup">
           <S.LoginIcon />
           Criar conta
-        </a>
+        </S.InternalLink>
       </S.Content>
 
       <S.Background />

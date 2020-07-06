@@ -52,10 +52,10 @@ const SignUp: React.FC = () => {
 
         </S.FormWrapper>
 
-        <a href="login">
+        <S.InternalLink to="/">
           <S.ArrowIcon />
           Voltar para Login
-        </a>
+        </S.InternalLink>
       </S.Content>
     </S.LoginWrapper>
   )
