@@ -4,7 +4,7 @@ import { animated } from 'react-spring'
 
 interface ToastProps {
   type?: 'sucess' | 'error' | 'info'
-  hasDescription: boolean
+  hasdescription: number
 }
 
 const toastTypeVariations = {
@@ -19,10 +19,10 @@ const toastTypeVariations = {
   error: css`
     background: #fddede;
     color: #c53030;
-  `
+  `,
 }
 
-export const Toast = styled(animated.div) <ToastProps>`
+export const Toast = styled(animated.div)<ToastProps>`
   width: 360px;
 
   position: relative;
@@ -45,7 +45,6 @@ export const Toast = styled(animated.div) <ToastProps>`
 
   ${props => toastTypeVariations[props.type || 'info']}
 
-
   div {
     flex: 1;
 
@@ -64,16 +63,18 @@ export const Toast = styled(animated.div) <ToastProps>`
     opacity: 0.6;
     border: 0;
     background: transparent;
-    color: inherit
+    color: inherit;
   }
 
-  ${props => !props.hasDescription && css`
-    align-items: center;
+  ${props =>
+    !props.hasdescription &&
+    css`
+      align-items: center;
 
-    svg {
-      margin-top: 0;
-    }
-  `}
+      svg {
+        margin-top: 0;
+      }
+    `}
 `
 
 export const QuitIcon = styled(XCircle)`

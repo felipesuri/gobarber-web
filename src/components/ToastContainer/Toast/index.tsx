@@ -14,7 +14,7 @@ interface ToastProps {
 const icons = {
   info: <Info size={20} />,
   error: <AlertCircle size={20} />,
-  sucess: <Check size={20} />
+  sucess: <Check size={20} />,
 }
 
 const Toast: React.FC<ToastProps> = ({ toast, style }) => {
@@ -31,7 +31,7 @@ const Toast: React.FC<ToastProps> = ({ toast, style }) => {
   }, [removeToast, toast.id])
 
   return (
-    <S.Toast type={toast.type} hasDescription={!!toast.description} style={style}>
+    <S.Toast type={toast.type} hasdescription={Number(!!toast.description)} style={style}>
       {icons[toast.type || 'info']}
 
       <div>
@@ -39,7 +39,7 @@ const Toast: React.FC<ToastProps> = ({ toast, style }) => {
         {toast.description && <p>{toast.description}</p>}
       </div>
 
-      <button type="button" onClick={() => removeToast(toast.id)} >
+      <button type="button" onClick={() => removeToast(toast.id)}>
         <S.QuitIcon />
       </button>
     </S.Toast>
