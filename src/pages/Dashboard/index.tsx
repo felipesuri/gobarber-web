@@ -29,6 +29,31 @@ const Dashboard: React.FC = () => {
           </button>
         </S.HeaderContent>
       </S.Header>
+
+      <S.Content>
+        <S.Schedule>
+          <h1>Horários agendados</h1>
+          <p>
+            <span>Hoje</span>
+            <span>Segunda-feira</span>
+            <span>Dia 12</span>
+          </p>
+
+          <S.NextAppointment>
+            <strong>Atendimento a seguir</strong>
+            <div>
+              <img src={user.avatar_url} alt={user.name} />
+
+              <strong>felipesuri</strong>
+              <span>
+                <S.ClockIcon />
+                08:00
+              </span>
+            </div>
+          </S.NextAppointment>
+        </S.Schedule>
+        <S.Calendar />
+      </S.Content>
     </S.DashboardWrapper>
   )
 }
