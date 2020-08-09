@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useAuth } from '../../hooks/auth'
 
@@ -7,6 +7,8 @@ import logoImg from '../../assets/logo.svg'
 import * as S from './styled'
 
 const Dashboard: React.FC = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date())
+
   const { signOut, user } = useAuth()
 
   return (
@@ -51,6 +53,51 @@ const Dashboard: React.FC = () => {
               </span>
             </div>
           </S.NextAppointment>
+
+          <S.Section>
+            <strong>Manhã</strong>
+
+            <S.Appointment>
+              <span>
+                <S.ClockIcon />
+                10:00
+              </span>
+
+              <div>
+                <img src={user.avatar_url} alt={user.name} />
+
+                <strong>Felipesuri</strong>
+              </div>
+            </S.Appointment>
+            <S.Appointment>
+              <span>
+                <S.ClockIcon />
+                10:00
+              </span>
+
+              <div>
+                <img src={user.avatar_url} alt={user.name} />
+
+                <strong>Felipesuri</strong>
+              </div>
+            </S.Appointment>
+            <S.Appointment>
+              <span>
+                <S.ClockIcon />
+                10:00
+              </span>
+
+              <div>
+                <img src={user.avatar_url} alt={user.name} />
+
+                <strong>Felipesuri</strong>
+              </div>
+            </S.Appointment>
+          </S.Section>
+
+          <S.Section>
+            <strong>Tarde</strong>
+          </S.Section>
         </S.Schedule>
         <S.Calendar />
       </S.Content>
