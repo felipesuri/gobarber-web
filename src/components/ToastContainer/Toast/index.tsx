@@ -3,7 +3,6 @@ import { AlertCircle, Info, Check } from '@styled-icons/feather'
 
 import * as S from './styled'
 
-// eslint-disable-next-line no-unused-vars
 import { useToast, ToastMessage } from '../../../hooks/toast'
 
 interface ToastProps {

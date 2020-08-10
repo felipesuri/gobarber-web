@@ -1,6 +1,11 @@
-// eslint-disable-next-line no-unused-vars
-import React, { InputHTMLAttributes, useEffect, useRef, useState, useCallback } from 'react'
-// eslint-disable-next-line no-unused-vars
+import React, {
+  InputHTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from 'react'
+
 import { StyledIconProps } from '@styled-icons/styled-icon'
 
 import { useField } from '@unform/core'
@@ -33,12 +38,12 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: 'value'
+      path: 'value',
     })
   }, [fieldName, registerField])
 
   return (
-    <S.InputWrapper isErrored={!!error} isFocused={isFocus} isField={isField} >
+    <S.InputWrapper isErrored={!!error} isFocused={isFocus} isField={isField}>
       {Icon && <Icon size={20} />}
       <S.Content
         onFocus={handleInputFocus}
