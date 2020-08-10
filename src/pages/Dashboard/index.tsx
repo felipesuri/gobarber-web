@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { useAuth } from '../../hooks/auth'
 import Header from '../../components/Header'
 
 import * as S from './styled'
+import Calendar from '../../components/Calendar'
 
 const Dashboard: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date())
-
   const { user } = useAuth()
 
   return (
@@ -81,7 +80,8 @@ const Dashboard: React.FC = () => {
             <strong>Tarde</strong>
           </S.Section>
         </S.Schedule>
-        <S.Calendar />
+
+        <Calendar />
       </S.Content>
     </S.DashboardWrapper>
   )
