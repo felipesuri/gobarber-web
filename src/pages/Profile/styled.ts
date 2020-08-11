@@ -35,7 +35,7 @@ export const AvatarWrapper = styled.div`
     border-radius: 50%;
   }
 
-  button {
+  label {
     position: absolute;
     width: 48px;
     height: 48px;
@@ -48,6 +48,11 @@ export const AvatarWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+
+    input {
+      display: none;
+    }
 
     &:hover {
       background: ${shade(0.2, '#ff9000')};
@@ -58,6 +63,7 @@ export const AvatarWrapper = styled.div`
 export const CameraIcon = styled(Camera)`
   width: 20px;
   height: 20px;
+  color: #312e38;
 `
 
 export const InternalLink = styled(Link)`
