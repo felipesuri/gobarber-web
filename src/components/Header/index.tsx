@@ -18,14 +18,16 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
       <S.HeaderContent>
         <img src={logoImg} alt="GoBarber" />
 
-        <S.Profile>
-          {user.avatar_url && <img src={user.avatar_url} alt={user.name} />}
+        <S.InternalLink to="/profile">
+          <S.Profile>
+            {user.avatar_url && <img src={user.avatar_url} alt={user.name} />}
 
-          <S.WelcomeWrapper>
-            <S.WelcomeTitle>Bem-vindo,</S.WelcomeTitle>
-            <S.WelcomeUser>{user.name}</S.WelcomeUser>
-          </S.WelcomeWrapper>
-        </S.Profile>
+            <S.WelcomeWrapper>
+              <S.WelcomeTitle>Bem-vindo,</S.WelcomeTitle>
+              <S.WelcomeUser>{user.name}</S.WelcomeUser>
+            </S.WelcomeWrapper>
+          </S.Profile>
+        </S.InternalLink>
 
         <button type="button" onClick={signOut}>
           <S.LogoutIcon />

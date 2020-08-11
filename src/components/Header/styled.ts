@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Power } from 'styled-icons/feather'
+import { Link } from 'react-router-dom'
 
 export const Header = styled.div`
   padding: 32px 0;
@@ -41,11 +42,20 @@ export const Profile = styled.div`
     border-radius: 50%;
   }
 `
+
 export const WelcomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 16px;
   line-height: 24px;
+`
+
+export const InternalLink = styled(Link)`
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `
 
 export const WelcomeTitle = styled.span`
