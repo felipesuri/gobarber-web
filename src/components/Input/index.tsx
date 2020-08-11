@@ -15,9 +15,15 @@ import * as S from './styled'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
   icon: React.ComponentType<StyledIconProps>
+  containerStyle?: object
 }
 
-const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  containerStyle = {},
+  name,
+  icon: Icon,
+  ...rest
+}) => {
   const [isFocus, setIsFocus] = useState(false)
   const [isField, setIsField] = useState(false)
 
@@ -43,7 +49,12 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   }, [fieldName, registerField])
 
   return (
-    <S.InputWrapper isErrored={!!error} isFocused={isFocus} isField={isField}>
+    <S.InputWrapper
+      style={containerStyle}
+      isErrored={!!error}
+      isFocused={isFocus}
+      isField={isField}
+    >
       {Icon && <Icon size={20} />}
       <S.Content
         onFocus={handleInputFocus}
