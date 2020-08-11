@@ -17,10 +17,12 @@ import Button from '../../components/Button'
 import * as S from './styled'
 import { useAuth } from '../../hooks/auth'
 
-interface SingUPFormData {
+interface ProfileFormData {
   name: string
   email: string
   password: string
+  old_password: string
+  password_confirmation: string
 }
 
 const Profile: React.FC = () => {
@@ -51,7 +53,7 @@ const Profile: React.FC = () => {
   )
 
   const handleSubmit = useCallback(
-    async (data: object) => {
+    async (data: ProfileFormData) => {
       try {
         formRef.current?.setErrors({})
 
@@ -60,20 +62,50 @@ const Profile: React.FC = () => {
           email: Yup.string()
             .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
-          password: Yup.string().min(8, 'Tamanho mínimo: 8 dígitos'),
+          old_password: Yup.string(),
+          password: Yup.string().when('old_password', {
+            is: val => !!val.length,
+            then: Yup.string().required('Campo obrigatório'),
+            otherwise: Yup.string(),
+          }),
+          password_confirmation: Yup.string()
+            .when('old_password', {
+              is: val => !!val.length,
+              then: Yup.string().required('Campo obrigatório'),
+              otherwise: Yup.string(),
+            })
+            .oneOf([Yup.ref('password'), undefined], 'Confirmação incorreta'),
         })
 
         await schema.validate(data, { abortEarly: false })
 
-        await api.post('/users', data)
+        const { name, email, old_password, password } = data
+
+        const formData = Object.assign(
+          {
+            name,
+            email,
+          },
+          old_password
+            ? {
+                old_password,
+                password,
+                password_confirmation,
+              }
+            : {}
+        )
+
+        const response = await api.put('/profile', formData)
+
+        updateUser(response.data)
+
+        history.push('/dashboard')
 
         addToast({
           type: 'sucess',
-          title: 'Cadastro realizado!',
-          description: 'Você já pode fazer seu login!',
+          title: 'Perfil atualizado!',
+          description: 'Os dados do seu perfil foram atualizados.',
         })
-
-        history.push('/')
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err)
