@@ -1,10 +1,3 @@
-[build]
-  command = "gatsby build"
-  publish = "public"
-
-[[plugins]]
-  package = "netlify-plugin-gatsby-cache"
-
 [[redirects]]
   from = "https://holdbtc.com/"
   to = "https://docs.google.com/spreadsheets/d/1yvh4m1uRpnCtJPfSWlaxZCBGlufrAdXS-YFdhhUeGWU/edit#gid=2010329848"
